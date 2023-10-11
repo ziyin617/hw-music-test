@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>你在管弦樂團中，適合擔任什麼角色?</title>
+</head>
+<body>
+    <div id="topic" class="top">
+        <h1 id="TT" class="T">你在管弦樂團中，適合擔任什麼角色?</h1>
+        <button id="EE" class="E" onclick="Start()">start</button>
+    </div>
+    
+    <div id="container" class="contain" style="display: none;">
+        <div id="Q" class="QQ" style="display: none;"></div>
+        <button id="A" class="b" style="display: none;"></button>
+        <button id="B" class="b" style="display: none;"></button>
+        <button id="C" class="b" style="display: none;"></button>
+    </div>
+
+    <div id="result-container" class="result" style="display: none;">
+        <h1 id="W" class="WW" style="display: none;">         你適合 </h1>
+        <div id="O" class="OO" style="display: none;" class="Result"></div>
+        <div id="L" class="LL" style="display: none;" class="Descript"></div>
+    </div>
+
+    <img id="myRe" style="display: none;" src=""></img>
+
+</body>
+    <script>
+        const topic=document.getElementById("topic");
+        const TT=document.getElementById("TT");
+        const start=document.getElementById("EE");
+        const container=document.getElementById("container");
+        const Q=document.getElementById("Q");
+        const A=document.getElementById("A");
+        const B=document.getElementById("B");
+        const C=document.getElementById("C");
+        const resultContainer=document.getElementById("result-container");
+        const W=document.getElementById("W");
+        const O=document.getElementById("O");
+        const L=document.getElementById("L");
+        const myRe=document.getElementById("myRe");
+        var curIndex=0;
+        let calE = 0; 
+        let calI = 0;
+        let calN = 0;
+        let calS = 0;
+        let calJ = 0;
+        let calP = 0;
+        let calF = 0;
+        let calT = 0;
+
+        function Start(){
+            curIndex=0;
+            topic.style.display="none";
+            TT.style.display="none";
+            start.style.display="none";
+            show(curIndex);
+        }
+        function cal(op,i){
+            if(scenarios[i].options[op].value.includes('E')){calE++;}
+            if(scenarios[i].options[op].value.includes('I')){calI++;}
+            if(scenarios[i].options[op].value.includes('S')){calS++;}
+            if(scenarios[i].options[op].value.includes('N')){calN++;}
+            if(scenarios[i].options[op].value.includes('F')){calF++;}
+            if(scenarios[i].options[op].value.includes('T')){calT++;}
+            if(scenarios[i].options[op].value.includes('P')){calP++;}
+            if(scenarios[i].options[op].value.includes('J')){calJ++;}
+
+            if(curIndex< (scenarios.length-1)){
+                curIndex++;
+                show(curIndex);
+            }else{
+                result();
+            }
+        }
+        function show(index){
+            Q.textContent="Q"+(index+1)+": \n"+scenarios[index].question;
+            A.textContent=scenarios[index].options[0].text;
+            B.textContent=scenarios[index].options[1].text;
+            C.textContent=scenarios[index].options[2].text;
+
+            container.style.display="block";
+            Q.style.display="block";
+            A.style.display="block";
+            B.style.display="block";
+            C.style.display="block";
+
+            let buttonClicked = false;
+            A.addEventListener('click',function (){
+                if (!buttonClicked) {
+                    buttonClicked = true;
+                    cal(0,curIndex);
+                }
+            });
+            
+            B.addEventListener('click',function (){
+                if (!buttonClicked) {
+                    buttonClicked = true;
+                    cal(1,curIndex);
+                }
+            });
+
+            C.addEventListener('click',function (){
+                if (!buttonClicked) {
+                    buttonClicked = true;
+                    cal(2,curIndex);
+                }
+            });
+        }
+        function result(){
+            var IorE = calI > calE ? 'I' : 'E';
+            var SorN = calS > calN ? 'S' : 'N';
+            var ForT = calF > calT ? 'F' : 'T';
+            var JorP = calJ > calP ? 'J' : 'P';
+            var combined = IorE + SorN + ForT + JorP;
+
+            var instrument = mbtiInstrumentMapping[combined];
+            var Descriptions = instrumentDescriptions[instrument];
+            var name=listForImg[combined];
+            var str="img/"+name+".jpg";
+            myRe.src=str;
+            O.textContent=instrument;
+            L.textContent=Descriptions;
+
+            container.style.display="none";
+            Q.style.display="none";
+            A.style.display="none";
+            B.style.display="none";
+            C.style.display="none";
+            resultContainer.style.display="block";
+            W.style.display="block";
+            O.style.display="block";
+            L.style.display="block";
+            myRe.style.display="block";
+        }
+        const scenarios = [
+            {
+                question: '您在一個大型派對中，人來人往，音樂嘈雜。您會選擇哪種方式度過時間？',
+                options: [
+                    { text: '積極參與派對，與不同的人交談並參加活動。         ', value: 'ESP' },
+                    { text: '在派對上找一個角落，觀察其他人，並參與深刻的對話。', value: 'INF' },
+                    { text: '在派對上演奏音樂或跳舞，使氛圍更加活潑。         ', value: 'ESP' },
+                ]
+            },
+            {
+                question: '您在一個樹林中漫步。您會選擇什麼方式來感受這個環境？',
+                options:[
+                    { text: '注意每個樹木和動植物，並記錄它們。              ', value: 'ISJ' },
+                    { text: '坐在樹下，閉上眼睛，聆聽森林中的聲音。          ', value: 'INF' },
+                    { text: '在樹林中演奏樂器，與動物們互動。                 ', value: 'ENP' },
+                ],
+            },
+            {
+                question: '您在下班/放學後的街頭，正好聽到了廣播電台，正在撥放音樂。您認為正在撥放的是？',
+                options:[
+                    { text: '古典樂。                                     ', value: 'ISJ' },    
+                    { text: '流行樂。                                     ', value: 'ESP' },
+                    { text: '爵士樂。                                     ', value: 'ENF' },
+                ]
+            },
+            {
+                question: '您正在一個寧靜的沙灘上度過假期。您選擇的活動是？',
+                options:[
+                    { text: '在海浪中漫步，感受海風徐徐吹來。                      ', value: 'ISJ' },
+                    { text: '躺在沙灘椅上，舒服的閱讀，享受故事樂趣。                        ', value: 'ISJ' },
+                    { text: '隨手撿起樹枝，開始在沙灘上作畫。               ', value: 'ENP' },
+                ]
+            },
+            {
+                question: '如果您是一位表演者，您會想在哪種場合表演音樂？',
+                options:[
+                    { text: '熙熙攘攘的街頭，觀眾眾多。                    ', value: 'ESP' },
+                    { text: '寧靜的森林，只有自然的聆聽者。             ', value: 'INF' },
+                    { text: '孤獨的海岸，在月光下進行演奏。                    ', value: 'INF' },
+                ]
+            },
+            {
+                question: '您正在一家美食餐廳用餐。您的選擇是？',
+                options:[
+                    { text: '點選餐廳的特色菜單，嘗試新口味。               ', value: 'ESP' },
+                    { text: '簡單瀏覽菜單，但仍選擇您熟悉且喜歡的菜餚。                      ', value: 'SFT' },
+                    { text: '詢問服務生的建議並嘗試推薦的菜餚。  ', value: 'EFJ' },
+                ]
+            },
+            {
+                question: '您發現自己身處於一個現代音樂工作室中，四周環繞著各種樂器和音樂設備。您覺得下一步您會？',
+                options:[
+                    { text: '感到音樂靈感湧現，決定創作新音樂。             ', value: 'ENP' },
+                    { text: '和自己親近的一群音樂好友開始進行即興演奏。                 ', value: 'ENP' },
+                    { text: '發現一部電腦與一本書，開始研究音樂理論和技巧。', value: 'INT' },
+                ]
+            },
+        ];
+        var mbtiInstrumentMapping = {
+            'ESFP': '小提琴',
+            'ISTP': '長號',
+            'INFJ': '長笛',
+            'INTJ': '大提琴',
+            'ESTP': '小號',
+            'ISFJ': '鋼琴',
+            'ESFP': '打擊樂器',
+            'ISTJ': '大提琴',
+            'ISFP': '薩克斯風',
+            'ENTP': '長號',
+            'ENFJ': '指揮',
+            'INFP': '巴松管',
+            'ENTJ': '法國號',
+            'ESTJ': '鼓樂器',
+            'INTP': '大提琴',
+            'ENFP': '小號'
+        };
+        var listForImg={
+            'ESFP': 'Violin',
+            'ISTP': 'Trombone',
+            'INFJ': 'Flute',
+            'INTJ': 'Cello',
+            'ESTP': 'Trumpet',
+            'ISFJ': 'Piano',
+            'ESFP': 'Percussion',
+            'ISTJ': 'Cello',
+            'ISFP': 'Saxophone',
+            'ENTP': 'Trombone',
+            'ENFJ': 'Conductor',
+            'INFP': 'Bassoon',
+            'ENTJ': 'French Horn',
+            'ESTJ': 'Drum',
+            'INTP': 'Cello',
+            'ENFP': 'Trumpet'
+        };        
+        var instrumentDescriptions = {
+            '指揮':"你充滿激情，喜歡引導和影響他人，指揮者的角色能夠充分展現你的領導潛力。",
+            '小提琴':'你更喜歡體驗新事物、活在當下，慷慨而樂觀，富有創造性，小提琴的音樂風格相當適合你。',
+            '長號': '你擁有冷靜的頭腦和優秀的技術能力，長號的音樂風格可能會讓你充分發揮你的才華。',
+            '長笛': '你敏感且具有豐富的情感，長笛的音樂風格能夠表現你的內在世界和創意。',
+            '大提琴': '你通常是深思熟慮的，具有強烈的內在驅動力，大提琴音樂能夠呈現你的深度和專注。',
+            '小號': '你充滿活力，勇於挑戰，小號的音樂可能能夠表達你的冒險精神。',
+            '鋼琴': '你通常是細心和負責任的，鋼琴演奏可能展現你的細緻和穩定性。',
+            '打擊樂器': '你喜愛即興和表現，打擊樂器讓你能夠發揮你的藝術性和活力。',
+            '大提琴': '你通常是組織和有計劃的，大提琴的音樂風格可能反映你的穩定性和技術。',
+            '薩克斯風': '你傾向於即興和表現，薩克斯風可能能夠展現你的藝術性和情感。',
+            '法國號': '你擁有冷靜的頭腦和優秀的技術能力，法國號的音樂風格可能會讓你充分發揮你的才華。',
+            '鼓樂器': '你傾向於組織和協調，鼓樂器演奏需要你的組織技能。',
+            '大提琴': '你是一個深度思考者，大提琴的音樂風格可以與你的思考方式相契合。',
+            '小號': '你充滿激情且善於社交，小號的音樂風格可能能夠表現你的情感。',
+            '巴松管': '你是一個夢想家，巴松管的音樂風格可能反映你的想像力。',
+            '長號': '你充滿創意和獨立思考，長號的音樂風格可能適合你的探索性格。'
+        };
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+body {
+    background-image: url('background.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+}
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.T{
+    flex:none;
+    width:90%;
+    font-family: Arial, sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 150px;
+    padding-bottom: 30px;
+    color: #815421;
+    text-align: center;
+}
+.E{
+    flex:none;
+    width:50%;
+    height: 70px;
+    margin-top: 10px;
+    background-image: url('button.jpg');
+    background-position: center center;
+    background-size: 95% 88%;
+    border: none;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    color: #ffe1b3;
+    text-align: center;
+}
+.contain{
+    display: flex;
+    text-align: center;
+    place-items: center;
+}
+.QQ{
+    flex: none;
+    margin-top: 150px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #451c03;
+    text-align: center;
+}
+.b{
+    flex: none;
+    width:70%;
+    height: 30%;
+    background-color: #7a4625;
+    background-size: 30px;
+    border: none;
+    margin-top: 25px;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+}
+.result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.WW{
+    flex: none;
+    width: 30%;
+    background-color: #451c03;
+    margin-top: 30px;
+    margin-left: 20%;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #fad5a3;
+    text-align:center;
+}
+.OO{
+    flex: none;
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    padding-bottom: 10px;
+    color: #0c0a0a;
+    text-align:center;
+}
+.LL{
+    flex: none;
+    background-color: rgba(240, 248, 255, 0.671);
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    padding-bottom: 10px;
+    color: #0c0a0a;
+    text-align:center;
+}
+#myRe{
+    width: 35%;
+    height: 30%;
+    margin-top: 10px;
+    margin-right: 30%;
+    margin-left: 30%;
+}
+@media(max-width:500px) {
+    #myRe{
+        width: 70%;
+        height: 35%;
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+    .WW{
+        width: 70%;
+    }
+}
