@@ -23,6 +23,7 @@
         <h1 id="W" class="WW" style="display: none;">         你適合 </h1>
         <div id="O" class="OO" style="display: none;" class="Result"></div>
         <div id="L" class="LL" style="display: none;" class="Descript"></div>
+        <a id="R" class="RR" style="display: none;" href="https://docs.google.com/forms/d/e/1FAIpQLSfyGtrrYEc46nRauJ2J8_Bc0ZGdSSKvGjKVNS-W1pDhFSc72Q/viewform?usp=sf_link">點按填寫回饋表單</a>
     </div>
 
     <img id="myRe" style="display: none;" src=""></img>
@@ -42,6 +43,7 @@
         const O=document.getElementById("O");
         const L=document.getElementById("L");
         const myRe=document.getElementById("myRe");
+        const R=document.getElementById("R");
         var curIndex=0;
         let calE = 0; 
         let calI = 0;
@@ -135,6 +137,7 @@
             O.style.display="block";
             L.style.display="block";
             myRe.style.display="block";
+            R.style.display="block";
         }
         const scenarios = [
             {
